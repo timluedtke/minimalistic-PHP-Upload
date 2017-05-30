@@ -1,7 +1,11 @@
 <?php
 error_reporting(0);
 
+## SETTINGS
 $addressToReportTo = "mail@yourdomain.com";
+$yourDomain = "https://yourdomain.com";
+## SETTINGS END
+
 $path = "uploads/";
 $numberOfSuccessfullUploadedFiles = 0;
 $filenames = "";
@@ -13,8 +17,9 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             continue; // Skip file if any error found
         }
         if ($_FILES['files']['error'][$f] == 0) {
+            $filename = str_replace(" ", "_", $filename);
             if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path . $filename)) {
-                $filenames = $filenames . "\r\n" . $filename . " <=> https://timluedtke.de/upload/uploads/" . $filename;
+                $filenames = $filenames . "\r\n" . $filename . " <=> " . $yourDomain . "/upload/uploads/" . $filename;
                 $numberOfSuccessfullUploadedFiles++;
             }
         }
