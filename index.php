@@ -4,6 +4,7 @@ error_reporting(0);
 ## SETTINGS
 $addressToReportTo = "mail@yourdomain.com";
 $yourDomain = "https://yourdomain.com";
+$yourDomainForTitle = "yourdomain.com";
 ## SETTINGS END
 
 $path = "uploads/";
@@ -34,8 +35,12 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 <html lang="de">
 <head>
   <meta charset="UTF-8"/>
-  <title>Sende mir eine Datei.</title>
+  <title>Sende mir Dateien | <?php echo $yourDomainForTitle; ?></title>
   <style type="text/css">
+    .logo {
+      padding-top: 10px;
+    }
+
     a {
       text-decoration: none;
       color: #333
@@ -63,17 +68,19 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
       text-rendering: optimizeLegibility;
     }
 
-    body {
+    body
+    {
+      width: 50em;
+      margin: 0 auto;
       font: 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
       text-transform: inherit;
       color: #333;
       background: #e7edee;
-      width: 100%;
       line-height: 18px;
     }
 
     .wrap {
-      width: 600px;
+      text-align: center;
       margin: 15px auto;
       padding: 20px 25px;
       background: white;
@@ -82,7 +89,6 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
       -moz-border-radius: 5px;
       border-radius: 5px;
       overflow: hidden;
-      text-align: center;
     }
 
     .status {
@@ -129,6 +135,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
 </head>
 <body>
+<div class="logo" style="text-align: center;"><img src="Circle-icons-speedometer.svg" width="150px" height="150px"></div>
 <div class="wrap">
   <h1>Sende mir Dateien:</h1>
     <?php

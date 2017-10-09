@@ -1,8 +1,9 @@
 # minimalistic PHP Upload
 
-Need a minimalistic upload script for sharing files?
+Need a minimalistic upload script for sharing files? Use this! 
 
-Use this! Now with eMail notification!
+* **simple installation**
+* **eMail notification!**
 
 ![Example Installation](https://timluedtke.de/ablage/openaccess/minimalisticPhpUpload.png)
 
@@ -18,4 +19,10 @@ Project details
 -------------
 Author: Tim Lüdtke (https://timluedtke.de)
 
-Version 1.0
+Version 1.1
+
+
+Graphics
+----
+All graphics used in this project are licensed under the GPL license
+* [Circle-icons-speedometer.svg](https://commons.wikimedia.org/wiki/File:Circle-icons-speedometer.svg) 
