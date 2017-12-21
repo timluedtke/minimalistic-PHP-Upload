@@ -19,7 +19,7 @@ Project details
 -------------
 Author: Tim Lüdtke (https://timluedtke.de)
 
-Version 1.1
+Version 1.2
 
 
 Graphics
