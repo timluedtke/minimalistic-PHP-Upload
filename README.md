@@ -5,7 +5,7 @@ Need a minimalistic upload script for sharing files? Use this!
 * **simple installation**
 * **eMail notification!**
 
-![Example Installation](https://timluedtke.de/ablage/openaccess/minimalisticPhpUpload.png)
+![Example Installation](assets/minimalisticPhpUpload.png "Example Installation")
 
 Installation
 ------------
@@ -25,4 +25,5 @@ Version 1.2
 Graphics
 ----
 All graphics used in this project are licensed under the GPL license
-* [Circle-icons-speedometer.svg](https://commons.wikimedia.org/wiki/File:Circle-icons-speedometer.svg) 
+* [Circle-icons-speedometer.svg](https://commons.wikimedia.org/wiki/File:Circle-icons-speedometer.svg)
+* [GitHub_Logo.png](https://github.com/logos) 
