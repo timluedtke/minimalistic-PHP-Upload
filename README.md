@@ -9,11 +9,11 @@ Need a minimalistic upload script for sharing files? Use this!
 
 Installation
 ------------
-* **Copy all the files** and folders to you websever (e.g. to ./upload/*)
-
 * Open index.php with your favorite editor and **change the SETTINGS block** to your Domain @ Mail-Address
 
-* Open https://yourdomain.com/upload and try your **new minimalistic upload script for sharing files**
+* **Copy all the files** and folders to you websever (e.g. to ./upload/*) - double check that you've copied the .htaccess file too.
+
+* Open https://yourdomain.com/upload and try your **new minimalistic upload script for sharing files** - you should
 
 Project details
 -------------
