@@ -22,12 +22,12 @@ function textSuccessfulUploaded()
 
 function textUploadSubline()
 {
-    return "Das Hochladen kann abh&auml;ngig von deiner Internetverbindung einen kurzen Moment dauern.";
+    return "<b>Es k&ouml;nnen mehrere Dateien ausgew&auml;hlt und gleichzeitig hochgeladen werden.</b>";
 }
 
 function textUploadBottomLine()
 {
-    return "Es k&ouml;nnen auch mehrere Dateien ausgew&auml;hlt und gleichzeitig hochgeladen werden.";
+    return "Das Hochladen kann abh&auml;ngig von deiner Internetverbindung einen kurzen Moment dauern.";
 }
 
 function textUploadButton()

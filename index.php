@@ -62,10 +62,10 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
   <form action="" method="post" enctype="multipart/form-data">
     <input type="file" name="files[]" multiple="multiple" accept="*">
-    <p><br/><?php echo textUploadSubline(); ?></p>
+    <p><?php echo textUploadSubline(); ?></p>
     <input type="submit" value="<?php echo textUploadButton(); ?>">
   </form>
-  <p><?php echo textUploadBottomLine(); ?></p>
+  <p style="font-style: italic;"><?php echo textUploadBottomLine(); ?></p>
 </div>
 <div class="footer" >
   <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload

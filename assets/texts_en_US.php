@@ -22,12 +22,12 @@ function textSuccessfulUploaded()
 
 function textUploadSubline()
 {
-    return "The process of uploading can take a while depending on your internet connection speed.";
+    return "<b>It is possible to upload multiple files at once</b> <br />by selecting them all together in the upload window.";
 }
 
 function textUploadBottomLine()
 {
-    return "It is possible to upload multiple files at once by selecting them all together in the upload window.";
+    return "The process of uploading can take a while depending on your internet connection speed.";
 }
 
 function textUploadButton() {
