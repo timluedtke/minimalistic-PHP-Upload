@@ -13,7 +13,7 @@ Installation
 
 * **Copy all the files** and folders to you websever (e.g. to ./upload/*) - double check that you've copied the .htaccess file too.
 
-* Open https://yourdomain.com/upload and try your **new minimalistic upload script for sharing files** - you should
+* Open https://yourdomain.com/upload and try your **new minimalistic upload script for sharing files** - you should recieve an email with further information directly after someone uploaded a file. 
 
 Project details
 -------------
