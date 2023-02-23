@@ -1,17 +1,19 @@
 <?php
 error_reporting(0);
 
-## SETTINGS
-include("assets/texts_de_DE.php");
-//include("assets/texts_en_US.php");
-$addressToReportTo = "mail@yourdomain.com";
+## --- SETTINGS ----------------
+
 $yourDomain = "https://yourdomain.com";
 $yourDomainForTitle = "yourdomain.com";
-## SETTINGS END
+$addressToReportTo = "mail@yourdomain.com";
+$uploadDirectory = "uploads/";
+$language = "en";  # see /assets/translations for available languages (USE IEFT language codes: https://en.wikipedia.org/wiki/IETF_language_tag?oldformat=true#List_of_common_primary_language_subtags)
 
-$path = "uploads/";
+## --- SETTINGS END ----------------
+
+include("assets/translations/texts_" . $language . ".php");
 $numberOfSuccessfullUploadedFiles = 0;
-$filenames = "";
+$collectedFilenames = "";
 
 if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
     // Loop through $_FILES to treat all files
@@ -21,15 +23,15 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
         }
         if ($_FILES['files']['error'][$f] == 0) {
             $filename = str_replace(" ", "_", $filename);
-            if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path . $filename)) {
-                $filenames = $filenames . "\r\n" . $filename . " <=> " . $yourDomain . "/upload/uploads/" . $filename;
+            if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $uploadDirectory . $filename)) {
+                $collectedFilenames = $collectedFilenames . "\r\n" . $filename . " <=> " . $yourDomain . "/upload/uploads/" . $filename;
                 $numberOfSuccessfullUploadedFiles++;
             }
         }
     }
     if ($numberOfSuccessfullUploadedFiles > 0) {
         $header = 'From: ' . $addressToReportTo . "\r\n" . 'Reply-To: ' . $addressToReportTo . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-        $message = textMailMessage($numberOfSuccessfullUploadedFiles, $_SERVER['REMOTE_ADDR'], $filenames);
+        $message = textMailMessage($numberOfSuccessfullUploadedFiles, $_SERVER['REMOTE_ADDR'], $collectedFilenames);
         mail($addressToReportTo, textNewFileUpload(), $message, $header);
     }
 }
@@ -66,6 +68,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
 
         <form action="" method="post" enctype="multipart/form-data">
             <input type="file" name="files[]" multiple="multiple" accept="*">
+            <!-- TODO TIM set language according to browsers -->
             <p><?php echo textUploadSubline(); ?></p>
             <input type="submit" value="<?php echo textUploadButton(); ?>">
         </form>
