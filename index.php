@@ -1,14 +1,7 @@
 <?php
 error_reporting(0);
 
-## --- SETTINGS ----------------
-
-$yourDomain = "https://yourdomain.com";
-$yourDomainForTitle = "yourdomain.com";
-$addressToReportTo = "mail@yourdomain.com";
-$uploadDirectory = "uploads/";
-
-## --- SETTINGS END ----------------
+include("settings.php");
 
 $availableLanguages = array("en", "de");  # see ./assets/translations for available languages (USE IEFT language codes: https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
 $chossenLanguage = in_array(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2), $availableLanguages) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : "en";
@@ -16,6 +9,7 @@ include("assets/translations/texts_" . $chossenLanguage . ".php");
 
 $numberOfSuccessfullUploadedFiles = 0;
 $collectedFilenames = "";
+$yourDomainForTitle = parse_url($yourDomain, PHP_URL_HOST);;
 
 if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
     // Loop through $_FILES to treat all files
@@ -63,7 +57,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
         # success message if upload has finisched
-        if ($numberOfSuccessfullUploadedFiles < 1) {
+        if ($numberOfSuccessfullUploadedFiles > 0) {
             printf("<p class='status'>%d " . textSuccessfulUploaded() . "</p>\n", $numberOfSuccessfullUploadedFiles);
         }
         ?>

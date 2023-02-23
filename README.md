@@ -10,11 +10,11 @@ Need a minimalistic upload script for sharing files? Use this!
 
 Installation
 ------------
-* Open index.php with your favorite editor and **change the SETTINGS block** to your Domain @ Mail-Address
+1. Open settings.php with your favorite editor and **change the values** accordingly
+1. **Copy all the files** and folders to you websever (e.g. to ./upload/*) - double check that you've copied the .htaccess file too.
+1. Create a new folder on your webserver with the name **uploadedFiles** (name is changeable in settings.php)
 
-* **Copy all the files** and folders to you websever (e.g. to ./upload/*) - double check that you've copied the .htaccess file too.
-
-* Open https://yourdomain.com/upload and try your **new minimalistic upload script for sharing files** - you should recieve an email with further information directly after someone uploaded a file.
+Done. Open https://yourdomain.com/upload and try your **new minimalistic upload script for sharing files** - you should recieve an email with further information directly after someone uploaded a file.
 
 Project details
 -------------
@@ -37,6 +37,7 @@ Changelog
 * sending email is now prevented if zero files have been uploaded
 * language handling changed
 * language is now choosen to match browsers language if available, english is default
+* setting $yourDomainForTitle is not necessary any more, since it is now calculated with parse_url()
 
 ### Version 1.2.1
 * Swapped the text in the bottom and the sublines to ensure the user reads the helping hints in the correct order
