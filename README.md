@@ -37,7 +37,7 @@ Changelog
 * sending email is now prevented if zero files have been uploaded
 * language handling changed
 * language is now choosen to match browsers language if available, english is default
-* setting $yourDomainForTitle is not necessary any more, since it is now calculated with parse_url()
+* setting $yourDomainForTitle is not necessary anymore, since it is now calculated with parse_url()
 
 ### Version 1.2.1
 * Swapped the text in the bottom and the sublines to ensure the user reads the helping hints in the correct order

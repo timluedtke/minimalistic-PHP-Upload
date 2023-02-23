@@ -1,11 +1,16 @@
 <?php
 
-function textMailMessage($numberOfSuccessfullUploadedFiles, $remoteIp, $filenames): string {
-    return "Es wurden (" . $numberOfSuccessfullUploadedFiles . ") neue Dateien mit dem Uploadscript hochgeladen. IP: " . $remoteIp . "  Dateinamen: " . $filenames;
+function textMailMessage(int $numberOfSuccessfullUploadedFiles, string $remoteIp, string $filenames): string {
+    return "Es wurden (" . $numberOfSuccessfullUploadedFiles . ") neue Dateien mit dem Uploadscript hochgeladen. IP: " . $remoteIp . "  Dateinamen: 
+    
+    " . $filenames;
 }
 
-function textNewFileUpload(): string {
-    return "Neuer Dateiupload";
+function textNewFileUpload(string $simplifiedDomainname, int $numberOfFiles): string {
+    if ($numberOfFiles > 1) {
+        $plural = "en";
+    }
+    return "Neuer Dateiupload auf " . $simplifiedDomainname . " (" . $numberOfFiles . " neue Datei" . $plural . ")";
 }
 
 function textTitle(): string {
@@ -17,7 +22,7 @@ function textSuccessfulUploaded(): string {
 }
 
 function textUploadSubline(): string {
-    return "<b>Es k&ouml;nnen mehrere Dateien ausgew&auml;hlt und gleichzeitig hochgeladen werden.</b>";
+    return "Es k&ouml;nnen mehrere Dateien ausgew&auml;hlt und gleichzeitig hochgeladen werden.";
 }
 
 function textUploadBottomLine(): string {

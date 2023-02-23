@@ -1,11 +1,16 @@
 <?php
 
-function textMailMessage($numberOfSuccessfullUploadedFiles, $remoteIp, $filenames): string {
-    return "(" . $numberOfSuccessfullUploadedFiles . ") new files have been uploaded via the minimalistic-upload-script. IP: " . $remoteIp . "  Filenames: " . $filenames;
+function textMailMessage(int $numberOfSuccessfullUploadedFiles, string $remoteIp, string $filenames): string {
+    return "(" . $numberOfSuccessfullUploadedFiles . ") new files have been uploaded via the minimalistic-upload-script. IP: " . $remoteIp . "  Filenames: 
+    
+    " . $filenames;
 }
 
-function textNewFileUpload(): string {
-    return "New fileupload";
+function textNewFileUpload(string $simplifiedDomainname, int $numberOfFiles): string {
+    if ($numberOfFiles > 1) {
+        $plural = "s";
+    }
+    return "New fileupload on " . $simplifiedDomainname . " (" . $numberOfFiles . " file" . $plural . " uploaded)";
 }
 
 function textTitle(): string {
@@ -17,7 +22,7 @@ function textSuccessfulUploaded(): string {
 }
 
 function textUploadSubline(): string {
-    return "<b>It is possible to upload multiple files at once</b> <br />by selecting them all together in the upload window.";
+    return "It is possible to upload multiple files at once<br />by selecting them all together in the upload window.";
 }
 
 function textUploadBottomLine(): string {
