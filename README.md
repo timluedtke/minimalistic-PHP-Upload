@@ -34,6 +34,7 @@ Changelog
 -----------
 ### Version 1.3
 * Support for php 8.x added
+* sending email prevented if zero files have been uploaded
 
 ### Version 1.2.1
 * Swapped the text in the bottom and the sublines to ensure the user reads the helping hints in the correct order

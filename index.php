@@ -14,7 +14,7 @@ $numberOfSuccessfullUploadedFiles = 0;
 $filenames = "";
 
 if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
-    // Loop $_FILES to execute all files
+    // Loop through $_FILES to treat all files
     foreach ($_FILES['files']['name'] as $f => $filename) {
         if ($_FILES['files']['error'][$f] == 4) {
             continue; // Skip file if any error found
@@ -27,9 +27,11 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
             }
         }
     }
-    $header = 'From: ' . $addressToReportTo . "\r\n" . 'Reply-To: ' . $addressToReportTo . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-    $message = textMailMessage($numberOfSuccessfullUploadedFiles, $_SERVER['REMOTE_ADDR'], $filenames);
-    mail($addressToReportTo, textNewFileUpload(), $message, $header);
+    if ($numberOfSuccessfullUploadedFiles > 0) {
+        $header = 'From: ' . $addressToReportTo . "\r\n" . 'Reply-To: ' . $addressToReportTo . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+        $message = textMailMessage($numberOfSuccessfullUploadedFiles, $_SERVER['REMOTE_ADDR'], $filenames);
+        mail($addressToReportTo, textNewFileUpload(), $message, $header);
+    }
 }
 ?>
 
@@ -50,24 +52,24 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
         <?php
         echo textTitle() . ":</h1>";
 
-    # show error messages if upload failed
-    if (isset($message)) {
-        foreach ($message as $msg) {
-            printf("<p class='status'>%s</p><br />\n", $msg);
+        # show error messages if upload failed
+        if (isset($message)) {
+            foreach ($message as $msg) {
+                printf("<p class='status'>%s</p><br />\n", $msg);
+            }
         }
-    }
-    # success message if upload has finisched
-    if ($numberOfSuccessfullUploadedFiles != 0) {
-        printf("<p class='status'>%d " . textSuccessfulUploaded() . "</p>\n", $numberOfSuccessfullUploadedFiles);
-    }
-    ?>
+        # success message if upload has finisched
+        if ($numberOfSuccessfullUploadedFiles < 1) {
+            printf("<p class='status'>%d " . textSuccessfulUploaded() . "</p>\n", $numberOfSuccessfullUploadedFiles);
+        }
+        ?>
 
-    <form action="" method="post" enctype="multipart/form-data">
-        <input type="file" name="files[]" multiple="multiple" accept="*">
-        <p><?php echo textUploadSubline(); ?></p>
-        <input type="submit" value="<?php echo textUploadButton(); ?>">
-    </form>
-    <p style="font-style: italic;"><?php echo textUploadBottomLine(); ?></p>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" name="files[]" multiple="multiple" accept="*">
+            <p><?php echo textUploadSubline(); ?></p>
+            <input type="submit" value="<?php echo textUploadButton(); ?>">
+        </form>
+        <p style="font-style: italic;"><?php echo textUploadBottomLine(); ?></p>
 </div>
 <div class="footer">
     <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.3<br/>
