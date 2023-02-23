@@ -7,11 +7,13 @@ $yourDomain = "https://yourdomain.com";
 $yourDomainForTitle = "yourdomain.com";
 $addressToReportTo = "mail@yourdomain.com";
 $uploadDirectory = "uploads/";
-$language = "en";  # see /assets/translations for available languages (USE IEFT language codes: https://en.wikipedia.org/wiki/IETF_language_tag?oldformat=true#List_of_common_primary_language_subtags)
 
 ## --- SETTINGS END ----------------
 
-include("assets/translations/texts_" . $language . ".php");
+$availableLanguages = array("en", "de");  # see ./assets/translations for available languages (USE IEFT language codes: https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
+$chossenLanguage = in_array(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2), $availableLanguages) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : "en";
+include("assets/translations/texts_" . $chossenLanguage . ".php");
+
 $numberOfSuccessfullUploadedFiles = 0;
 $collectedFilenames = "";
 
