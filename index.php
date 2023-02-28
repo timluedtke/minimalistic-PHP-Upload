@@ -42,9 +42,16 @@ echo "<!doctype html>
     <META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">
     <title><?php echo textTitle() . " | " . $simplifiedDomainname; ?></title>
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-<div class="logo" style="text-align: center;">
+<div class="logo" style="text-align: center;" alt="">
     <img src="assets/Circle-icons-speedometer.svg" width="150px" height="150px" alt="logo">
 </div>
 <div style="text-align: center;"><h1><?php echo $simplifiedDomainname ?></h1></div>
@@ -73,7 +80,7 @@ echo "<!doctype html>
         <p style="font-style: italic;"><?php echo textUploadBottomLine(); ?></p>
 </div>
 <div class="footer">
-    <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.3<br/>
+    <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.3.1<br/>
         <img src="assets/GitHub_Logo.png" alt="logo github"></a>
 </div>
 </body>

@@ -20,18 +20,22 @@ Project details
 -------------
 Author: Tim Lüdtke (https://timluedtke.de)
 
-**Version 1.3 (Feb 2023)**
+**Version 1.3.1 (Feb 2023)**
 
 Licencend Images
 ----
 All graphics used in this project are licensed under the GPL license:
-* [Circle-icons-speedometer.svg](https://commons.wikimedia.org/wiki/File:Circle-icons-speedometer.svg)
-* [GitHub_Logo.png](https://github.com/logos) 
+* [Circle-icons-speedometer](https://commons.wikimedia.org/wiki/File:Circle-icons-speedometer.svg) (used as favicon as well)
+* [GitHub_Logo](https://github.com/logos) 
 
-The project itself is although licenced under GPL: see here for [license details](LICENSE)
+The project itself is although licenced under GPL - see here for [license details](LICENSE)
 
 Changelog
 -----------
+### Version 1.3.1
+* made server-directory for Link-generation configurable via settings.php to support non default installation paths
+* favicons added
+
 ### Version 1.3
 * support for php 8.x ensured
 * sending email is now prevented if zero files have been uploaded
