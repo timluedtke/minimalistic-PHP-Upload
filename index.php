@@ -20,7 +20,7 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
         if ($_FILES['files']['error'][$f] == 0) {
             $filename = str_replace(" ", "_", $filename);
             if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $uploadDirectory . $filename)) {
-                $collectedFilenames = $collectedFilenames . "\r\n" . $filename . " <=> " . $yourDomain . "/upload/uploads/" . $filename;
+                $collectedFilenames = $collectedFilenames . "\r\n" . $filename . " <=> " . $yourDomain . "/" . $projectDirectory . $uploadDirectory . $filename;
                 $numberOfSuccessfullUploadedFiles++;
             }
         }
@@ -33,7 +33,6 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
         mail($addressToReportTo, $encoded_subject, $message, $header);
     }
 }
-
 
 echo "<!doctype html>
 <html lang=\"$choosenLanguage\">";
