@@ -20,7 +20,7 @@ Project details
 -------------
 Author: Tim Lüdtke (https://timluedtke.de)
 
-**Version 1.3.1 (Feb 2023)**
+**Version 1.3.2 (Mar 2023)**
 
 Licencend Images
 ----
@@ -32,6 +32,9 @@ The project itself is although licenced under GPL - see here for [license detail
 
 Changelog
 -----------
+### Version 1.3.2
+* added a random hash as prefix to the filenames on the server to avoid users accessing the files other than the reciever of the email _(for further details see [gitlab issue 2](https://github.com/timluedtke/minimalistic-PHP-Upload/issues/2))_
+
 ### Version 1.3.1
 * made server-directory for Link-generation configurable via settings.php to support non default installation paths
 * favicons added

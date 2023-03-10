@@ -1,9 +1,9 @@
 <?php
 error_reporting(0);
-
 include("settings.php");
 
-$availableLanguages = array("en", "de");  # see ./assets/translations for available languages (USE IEFT language codes: https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
+# see ./assets/translations for available languages (USE IEFT language codes: https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags)
+$availableLanguages = array("en", "de");
 $choosenLanguage = in_array(substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2), $availableLanguages) ? substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2) : "en";
 include("assets/translations/texts_" . $choosenLanguage . ".php");
 
@@ -11,16 +11,32 @@ $numberOfSuccessfullUploadedFiles = 0;
 $collectedFilenames = "";
 $simplifiedDomainname = trim(parse_url($yourDomain, PHP_URL_HOST));
 
+// remove illegal file system characters https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words
+function sanitizeFilename($name): string {
+    $name = str_replace(array_merge(
+        array_map('chr', range(0, 31)),
+        array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ' ', '-', '\'')
+    ), '', $name);
+    $ext = pathinfo($name, PATHINFO_EXTENSION);
+    return mb_strcut(pathinfo($name, PATHINFO_FILENAME), 0, 200 - ($ext ? strlen($ext) + 1 : 0),
+            mb_detect_encoding($name)) . ($ext ? '.' . $ext : '');
+}
+
 if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
     // Loop through $_FILES to treat all files
     foreach ($_FILES['files']['name'] as $f => $filename) {
         if ($_FILES['files']['error'][$f] == 4) {
-            continue; // Skip file if any error found
+            continue; // Skip file on any error
         }
         if ($_FILES['files']['error'][$f] == 0) {
-            $filename = str_replace(" ", "_", $filename);
-            if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $uploadDirectory . $filename)) {
-                $collectedFilenames = $collectedFilenames . "\r\n" . $filename . " <=> " . $yourDomain . "/" . $projectDirectory . $uploadDirectory . $filename;
+            try {
+                $randomPrefix = bin2hex(random_bytes(10));
+            } catch (Exception $ignore) {
+                $randomPrefix = substr(hash('sha256', openssl_random_pseudo_bytes(20)), 10);
+            }
+            $sanitizedFilename = $randomPrefix . "_" . sanitizeFilename($filename);
+            if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $uploadDirectory . $sanitizedFilename)) {
+                $collectedFilenames = $collectedFilenames . "\r\n" . $sanitizedFilename . " <=> " . $yourDomain . "/" . $projectDirectory . $uploadDirectory . $sanitizedFilename;
                 $numberOfSuccessfullUploadedFiles++;
             }
         }
@@ -80,7 +96,7 @@ echo "<!doctype html>
         <p style="font-style: italic;"><?php echo textUploadBottomLine(); ?></p>
 </div>
 <div class="footer">
-    <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.3.1<br/>
+    <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.3.2<br/>
         <img src="assets/GitHub_Logo.png" alt="logo github"></a>
 </div>
 </body>
